@@ -1,0 +1,15 @@
+Package: ercv
+Type: Package
+Title: Equi-rank Clutering Verification 
+Version: 0.1.0
+License: GPL (>= 2)
+Author: Simon-Pierre Gadoury
+Maintainer: Simon-Pierre Gadoury <spgadou@me.com>
+Description: Assesses the validity of clusters for a given dataset through bootstrapping and hypothesis testing.
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports:
+    igraph,
+    stringr,
+    stringi
