@@ -4,10 +4,12 @@
 \alias{tree2graphdf}
 \title{Tree to graph dataframe}
 \usage{
-tree2graphdf(tree)
+tree2graphdf(tree, plot = TRUE)
 }
 \arguments{
 \item{tree}{the tree under consideration}
+
+\item{plot}{should a basic plot of the tree be shown ?}
 }
 \value{
 a graph.data.frame object

@@ -12,4 +12,13 @@ RoxygenNote: 6.0.1
 Imports:
     igraph,
     stringr,
-    stringi
+    stringi,
+    utils
+Collate: 
+    'VerifyTree.R'
+    'ClusterNodeSelection.R'
+    'EliminateCluster.R'
+    'GetLeaves.R'
+    'GetPairs.R'
+    'hclust2tree.R'
+    'tree2graphdf.R'

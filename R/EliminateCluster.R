@@ -3,6 +3,7 @@
 #' @param cluster the cluster under consideration
 #' @param pos the position of the subcluster, directly under the main cluster, to eliminate
 #'
+#' @include ClusterNodeSelection.R
 #' @author Simon-Pierre Gadoury
 #' @return The main cluster, without the subcluster under consideration.
 #' @export

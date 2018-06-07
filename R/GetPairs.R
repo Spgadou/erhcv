@@ -4,6 +4,7 @@
 #' @param pos position of the subcluster directly under the main cluster.
 #' This cluster is the one every other cluster will be paired with.
 #'
+#' @include VerifyTree.R
 #' @author Simon-Pierre Gadoury
 #' @return Matrice of pairs of leaves.
 #' @export

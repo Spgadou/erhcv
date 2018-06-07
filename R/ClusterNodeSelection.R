@@ -7,12 +7,16 @@
 #' @param BootData the datafram of bootstrap samples of spearman rho, with columsn
 #' named "(i,j)", where "i" and "j" are different leave
 #'
+#' @include VerifyTree.R
+#' @import utils
 #' @author Simon-Pierre Gadoury
 #' @return The main cluster, with or without the node un der test, wether the
 #' hypothesis can be rejected or not.
 #' @export
 
 ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
+
+  BootData_UnderTest <- NULL
 
   MAT <- GetPairs(cluster, testPos)
   spear <- cor(data, method = "sp")
@@ -26,7 +30,6 @@ ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
     spear_calc <- c(spear_calc, spear[MAT[i,1], MAT[i,2]])
   }
   spear_calc <- spear_calc[spear_calc != 1][-1] # Get sampled Rho (no boot)
-
   ini <- "BootData_UnderTest <- cbind(z)"
   input <- "BootData$`(z1,z2)`"
   res1 <- numeric(dim(MAT)[1])

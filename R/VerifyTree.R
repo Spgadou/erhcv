@@ -13,23 +13,24 @@
 VerifyTree <- function(tree, data, alpha = 0.95, nboot = 500){
 
   m <- nboot
-  SpearmanBoot <- array(0, dim = c(dim(data)[2], dim(data)[2], m))
+  mm <- dim(data)[2]
+  SpearmanBoot <- array(0, dim = c(mm, mm, m))
   for (i in 1:m){
     pos <- sample(1:dim(data)[1], replace = T)
     SpearmanBoot[,,i] <- cor(data[pos,], method = "sp")
   }
 
   k <- 1
-  SpearmanBootResized <- matrix(0, ncol = 7 * 8 / 2, nrow = m)
-  for (i in 1:7){
-    for (j in (i + 1):8){
+  SpearmanBootResized <- matrix(0, ncol = (mm - 1) * mm / 2, nrow = m)
+  for (i in 1:(mm - 1)){
+    for (j in (i + 1):mm){
       SpearmanBootResized[,k] <- SpearmanBoot[i,j,]
       k <- k + 1
     }
   }
   Names <- ""
-  for (i in 1:(dim(data)[2] - 1)){
-    for (j in (i + 1):dim(data)[2]){
+  for (i in 1:(mm - 1)){
+    for (j in (i + 1):mm){
       Names <- c(Names, paste("(", i, ",", j, ")", sep = ""))
     }
   }
@@ -56,6 +57,7 @@ VerifyTree <- function(tree, data, alpha = 0.95, nboot = 500){
           e1$FinalTree <- list()
           e1$k <- 1
           TreeElimination <- function(tree){
+
             for (i in 1:length(tree)){
               initialCondition <- 0
               for (element in tree[[i]]){
@@ -70,6 +72,9 @@ VerifyTree <- function(tree, data, alpha = 0.95, nboot = 500){
                   TreeElimination(NewTree)
                   break
                 }
+              }
+              else{
+                e1$FinalTree <- tree
               }
             }
           }
@@ -103,7 +108,8 @@ VerifyTree <- function(tree, data, alpha = 0.95, nboot = 500){
       }
     }
     TreeSelection(tree)
-    e2$TREE
+    list("Bootstrap samples" = SpearmanBootResized,
+         "Tree" = e2$TREE)
   }
 
   FUN(tree)

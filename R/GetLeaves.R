@@ -2,6 +2,7 @@
 #'
 #' @param cluster a cluster
 #'
+#' @include VerifyTree.R
 #' @author Simon-Pierre Gadoury
 #' @return Vector of leaves under the cluster.
 #' @export
