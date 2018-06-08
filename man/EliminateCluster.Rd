@@ -2,7 +2,7 @@
 % Please edit documentation in R/EliminateCluster.R
 \name{EliminateCluster}
 \alias{EliminateCluster}
-\title{Eliminate a subcluster from a cluster}
+\title{Subcluster elimination}
 \usage{
 EliminateCluster(cluster, pos)
 }
@@ -15,7 +15,7 @@ EliminateCluster(cluster, pos)
 The main cluster, without the subcluster that was eliminated.
 }
 \description{
-Eliminate a subcluster from a cluster
+Eliminate a subcluster and merge its elements to the main cluster.
 }
 \author{
 Simon-Pierre Gadoury

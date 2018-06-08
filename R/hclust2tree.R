@@ -1,9 +1,14 @@
-#' Transform a hclust object into a tree (list)
+#' hclust object transformation
+#'
+#' @description Transforms a hclust object into a tree (cluster) used
+#' in other functions of this package.
 #'
 #' @param clustering hclust object
 #'
 #' @include VerifyTree.R
+#'
 #' @author Simon-Pierre Gadoury
+#'
 #' @export
 
 hclust2tree <- function(clustering){

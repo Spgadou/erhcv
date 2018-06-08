@@ -7,7 +7,7 @@
 tree2plot(tree, plot = TRUE, ...)
 }
 \arguments{
-\item{tree}{the tree under consideration (of the form provided by the function hclust2tree)}
+\item{tree}{the tree under consideration of the form provided by the function hclust2tree)}
 
 \item{plot}{show a basic plot the tree ?}
 
@@ -17,7 +17,7 @@ tree2plot(tree, plot = TRUE, ...)
 a plot or graph.data.frame object
 }
 \description{
-Plot of a tree structure
+Provide a plot or a graph.data.frame object for a given tree structure.
 }
 \author{
 Simon-Pierre Gadoury

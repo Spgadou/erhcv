@@ -1,12 +1,18 @@
 #' Plot of a tree structure
 #'
-#' @param tree the tree under consideration (of the form provided by the function hclust2tree)
+#' @description Provide a plot or a graph.data.frame object for a given tree structure.
+#'
+#' @param tree the tree under consideration of the form provided by the function hclust2tree)
+#'
 #' @param plot show a basic plot the tree ?
 #' @param ... extra parameters passed to igraph.plot
 #'
 #' @author Simon-Pierre Gadoury
+#'
 #' @return a plot or graph.data.frame object
+#'
 #' @import igraph
+#'
 #' @export
 
 tree2plot <- function(tree, plot = TRUE, ...){

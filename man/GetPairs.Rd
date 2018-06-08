@@ -2,7 +2,7 @@
 % Please edit documentation in R/GetPairs.R
 \name{GetPairs}
 \alias{GetPairs}
-\title{Get pairs of leaves from different branches of a cluster}
+\title{Obtain pairs of leaves}
 \usage{
 GetPairs(cluster, pos)
 }
@@ -16,7 +16,10 @@ This subcluster is the one every other subcluster will be paired with.}
 Matrix of pairs of leaves.
 }
 \description{
-Get pairs of leaves from different branches of a cluster
+Find all the pairs of leaves between
+a specific subcluster and all the other subclusters
+under the main cluster. Pairs between the subclusters
+of the specific subcluster are also given.
 }
 \author{
 Simon-Pierre Gadoury

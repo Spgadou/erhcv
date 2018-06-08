@@ -2,7 +2,7 @@
 % Please edit documentation in R/GetLeaves.R
 \name{GetLeaves}
 \alias{GetLeaves}
-\title{Get a vector of leaves under a given cluster}
+\title{Leaves extractions}
 \usage{
 GetLeaves(cluster)
 }
@@ -10,10 +10,11 @@ GetLeaves(cluster)
 \item{cluster}{a cluster (of the form provided by the function hclust2tree)}
 }
 \value{
-Vector of leaves under the cluster.
+Vector of leaves.
 }
 \description{
-Get a vector of leaves under a given cluster
+Extract the leaves (nodes in the bottom of the hierarchy) under
+(not necessarily directly under) a cluster.
 }
 \author{
 Simon-Pierre Gadoury
