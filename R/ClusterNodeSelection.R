@@ -25,47 +25,52 @@
 
 ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
 
-  BootData_UnderTest <- NULL
+  if (length(cluster[[testPos]]) != 1){
+    BootData_UnderTest <- NULL
 
-  MAT <- GetPairs(cluster, testPos)
-  spear <- cor(data, method = "sp")
+    MAT <- GetPairs(cluster, testPos)
+    spear <- cor(data, method = "sp")
 
-  n <- dim(data)[1]
-  nn <- dim(BootData)[1]
-  m <- dim(MAT)[1]
+    n <- dim(data)[1]
+    nn <- dim(BootData)[1]
+    m <- dim(MAT)[1]
 
-  spear_calc <- 0
-  for (i in 1:dim(MAT)[1]){
-    spear_calc <- c(spear_calc, spear[MAT[i,1], MAT[i,2]])
-  }
-  spear_calc <- spear_calc[spear_calc != 1][-1] # Get sampled Rho (no boot)
-  ini <- "BootData_UnderTest <- cbind(z)"
-  input <- "BootData$`(z1,z2)`"
-  res1 <- numeric(dim(MAT)[1])
-  for (i in 1:dim(MAT)[1]){
-    test <- input
-    test <- stringr::str_replace_all(test, 'z1', as.character(min(MAT[i,1], MAT[i,2])))
-    test <- stringr::str_replace_all(test, 'z2', as.character(max(MAT[i,1], MAT[i,2])))
-    res1[i] <- test
-  }
-  ini <- stringr::str_replace_all(ini, 'z', paste(res1, collapse = ", "))
-  eval(parse(text = ini)) # Extract bootstrapped Rho
+    spear_calc <- 0
+    for (i in 1:dim(MAT)[1]){
+      spear_calc <- c(spear_calc, spear[MAT[i,1], MAT[i,2]])
+    }
+    spear_calc <- spear_calc[spear_calc != 1][-1] # Get sampled Rho (no boot)
+    ini <- "BootData_UnderTest <- cbind(z)"
+    input <- "BootData$`(z1,z2)`"
+    res1 <- numeric(dim(MAT)[1])
+    for (i in 1:dim(MAT)[1]){
+      test <- input
+      test <- stringr::str_replace_all(test, 'z1', as.character(min(MAT[i,1], MAT[i,2])))
+      test <- stringr::str_replace_all(test, 'z2', as.character(max(MAT[i,1], MAT[i,2])))
+      res1[i] <- test
+    }
+    ini <- stringr::str_replace_all(ini, 'z', paste(res1, collapse = ", "))
+    eval(parse(text = ini)) # Extract bootstrapped Rho
 
-  T2_FNB <- matrix(0, ncol = m, nrow = nn)
-  for (i in 1:nn){
-    T2_FNB[i,] <- c(cbind(BootData_UnderTest[i,]) - c(rbind(rep(1, m)) %*% cbind(BootData_UnderTest[i,]) / m) * cbind(rep(1, m)))
-  }
+    T2_FNB <- matrix(0, ncol = m, nrow = nn)
+    for (i in 1:nn){
+      T2_FNB[i,] <- c(cbind(BootData_UnderTest[i,]) - c(rbind(rep(1, m)) %*% cbind(BootData_UnderTest[i,]) / m) * cbind(rep(1, m)))
+    }
 
-  T2_FN <- c(cbind(spear_calc) - c(rbind(rep(1, m)) %*% cbind(spear_calc) / m) * cbind(rep(1, m)))
-  T2_FN <- matrix(T2_FN, ncol = m, nrow = nn, byrow = T)
+    T2_FN <- c(cbind(spear_calc) - c(rbind(rep(1, m)) %*% cbind(spear_calc) / m) * cbind(rep(1, m)))
+    T2_FN <- matrix(T2_FN, ncol = m, nrow = nn, byrow = T)
 
-  MAT <- (T2_FNB - T2_FN) * sqrt(n)
-  CritVal_dist <- apply(MAT, 1, function(x) sum(x^2) / m)
-  K <- quantile(CritVal_dist, alpha)
-  Q <- sum((spear_calc - mean(spear_calc))^2) * (n / m)
+    MAT <- (T2_FNB - T2_FN) * sqrt(n)
+    CritVal_dist <- apply(MAT, 1, function(x) sum(x^2) / m)
+    K <- quantile(CritVal_dist, alpha)
+    Q <- sum((spear_calc - mean(spear_calc))^2) * (n / m)
 
-  if (Q < K){
-    EliminateCluster(cluster, testPos)
+    if (Q < K){
+      EliminateCluster(cluster, testPos)
+    }
+    else{
+      cluster
+    }
   }
   else{
     cluster

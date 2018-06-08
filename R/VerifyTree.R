@@ -156,3 +156,4 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
   }
   Verif(tree)
 }
+

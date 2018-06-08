@@ -4,12 +4,14 @@
 \alias{tree2plot}
 \title{Plot of a tree structure}
 \usage{
-tree2plot(tree, plot = TRUE)
+tree2plot(tree, plot = TRUE, ...)
 }
 \arguments{
 \item{tree}{the tree under consideration (of the form provided by the function hclust2tree)}
 
 \item{plot}{show a basic plot the tree ?}
+
+\item{...}{extra parameters passed to igraph.plot}
 }
 \value{
 a plot or graph.data.frame object

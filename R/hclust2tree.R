@@ -12,7 +12,7 @@ hclust2tree <- function(clustering){
   ll <- list()
   vk <- numeric(dim(fit$merge)[1])
 
-  for (i in 1:(dim(fit$merge)[1] - 1)){
+  for (i in 1:dim(fit$merge)[1]){
     procedure <- fit$merge[i,]
     if (procedure[1] < 0 & procedure[2] < 0){
       ll[[i]] <- list(-fit$merge[i,1], -fit$merge[i,2])
@@ -24,11 +24,11 @@ hclust2tree <- function(clustering){
       ll[[vk[i]]] <- list(-min(procedure), ll[[vk[i]]])
     }
     else{
-      vk[i] <- vk[min(procedure)]
-      ll[[vk[i]]] <- list(ll[[vk[min(procedure)]]],
-                          ll[[vk[max(procedure)]]])
-      ll[[vk[i]]] <- NULL
+      vk[i] <- min(vk[procedure[1]], vk[procedure[2]])
+      ll[[vk[i]]] <- list(ll[[vk[i]]],
+                          ll[[max(vk[procedure[1]], vk[procedure[2]])]])
+      ll[[max(vk[procedure[1]], vk[procedure[2]])]] <- NULL
     }
   }
-  ll
+  ll[[1]]
 }
