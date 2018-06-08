@@ -5,7 +5,6 @@
 #' hierarchical nodes provided by hclust, through the use of the
 #' empirical matrix of Spearman's rho.
 #'
-#'
 #' @details The hypothesis testing, as well as the clustering, is made with the matrix of Spearman's rho
 #' for a given dataset, see \insertCite{gaisser2010testing}{ercv}.
 #'

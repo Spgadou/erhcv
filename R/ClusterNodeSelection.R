@@ -2,7 +2,8 @@
 #'
 #' @description Test the significance of a subcluster directly under a given cluster.
 #' If it is not significant, the subcluster is eliminated and
-#' its element are merged in the main cluster.
+#' its element are merged in the main cluster. Bootstrap samples of the underlying
+#' data needs to be provided, as well as the structure under consideration.
 #'
 #' @details The hypothesis testing is made with the matrix of Spearman's rho
 #' for a given dataset, see \insertCite{gaisser2010testing}{ercv}.
