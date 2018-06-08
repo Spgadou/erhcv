@@ -21,18 +21,24 @@ GetPairs <- function(cluster, pos){
   nClust <- length(cluster) # Number of subclusters
 
   ## Pairs within the cluster under test
+  MAT <- c(0, 0)
   cluster_test <- cluster[[pos]]
-  L1 <- GetLeaves(cluster[[pos]][[1]]) # Leaves of first subcluster
-  L2 <- GetLeaves(cluster[[pos]][[2]]) # Leaves of second subcluster
-  MAT <- expand.grid(L1, L2) # Pair leaves for Rho computation
+  stopifnot(length(cluster_test) > 1)
+  for (i in 1:(length(cluster_test) - 1)){
+    for (j in (i + 1):length(cluster_test)){
+      L1 <- GetLeaves(cluster_test[[i]]) # Leaves of first subcluster
+      L2 <- GetLeaves(cluster_test[[j]]) # Leaves of second subcluster
+      MAT <- rbind(MAT, expand.grid(L1, L2)) # Pair leaves for Rho computation
+    }
+  }
 
   pos2 <- 1:nClust
   pos2 <- pos2[-pos]
   for (i in pos2){
     L1 <- GetLeaves(cluster[[i]]) # Leaves of first subcluster
-    L2 <- GetLeaves(cluster[[pos]]) # Leaves of second subcluster
+    L2 <- GetLeaves(cluster_test) # Leaves of second subcluster
     MAT <- rbind(MAT, expand.grid(L1, L2))
   }
 
-  MAT
+  MAT[-1,]
 }
