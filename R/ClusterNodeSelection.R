@@ -1,4 +1,8 @@
-#' Test the significance of a subcluster directly under a given cluster
+#' Subcluster significance test
+#'
+#' @description Test the significance of a subcluster directly under a given cluster.
+#' If it is not significant, the subcluster is eliminated and
+#' its element are merged in the main cluster.
 #'
 #' @details The hypothesis testing is made with the matrix of Spearman's rho
 #' for a given dataset, see \insertCite{gaisser2010testing}{ercv}.
@@ -11,11 +15,14 @@
 #' named "(i,j)", where "i" and "j" are different leaves
 #'
 #' @include VerifyTree.R
+#'
 #' @import utils
 #' @import stringr
 #' @import stringi
 #' @importFrom Rdpack reprompt
+#'
 #' @author Simon-Pierre Gadoury
+#'
 #' @return The main cluster, with or without the node under test, wether the
 #' hypothesis can be rejected or not.
 #'

@@ -22,10 +22,13 @@ VerifyTree(data, alpha = 0.95, nboot = 500, distance.method = "maximum",
 The tree, modified, according to the results of the tests.
 }
 \description{
-Verify tree structure
+Given a matrix of data, where the rows are observations
+and the columns are variables, it verifies the statistical significance of
+hierarchical nodes provided by hclust, through the use of the
+empirical matrix of Spearman's rho.
 }
 \details{
-The hypothesis testing is made with the matrix of Spearman's rho
+The hypothesis testing, as well as the clustering, is made with the matrix of Spearman's rho
 for a given dataset, see \insertCite{gaisser2010testing}{ercv}.
 }
 \examples{

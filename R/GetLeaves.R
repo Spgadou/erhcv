@@ -1,10 +1,16 @@
-#' Get a vector of leaves under a given cluster
+#' Leaves extractions
+#'
+#' @description Extract the leaves (nodes in the bottom of the hierarchy) under
+#' (not necessarily directly under) a cluster.
 #'
 #' @param cluster a cluster (of the form provided by the function hclust2tree)
 #'
 #' @include VerifyTree.R
+#'
 #' @author Simon-Pierre Gadoury
-#' @return Vector of leaves under the cluster.
+#'
+#' @return Vector of leaves.
+#'
 #' @export
 
 GetLeaves <- function(cluster){
