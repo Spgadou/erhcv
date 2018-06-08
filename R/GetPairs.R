@@ -1,12 +1,12 @@
 #' Get pairs of leaves from different branches of a cluster
 #'
-#' @param cluster main cluster.
+#' @param cluster main cluster (of the form provided by the function hclust2tree)
 #' @param pos position of the subcluster directly under the main cluster.
-#' This cluster is the one every other cluster will be paired with.
+#' This subcluster is the one every other subcluster will be paired with.
 #'
 #' @include VerifyTree.R
 #' @author Simon-Pierre Gadoury
-#' @return Matrice of pairs of leaves.
+#' @return Matrix of pairs of leaves.
 #' @export
 
 GetPairs <- function(cluster, pos){

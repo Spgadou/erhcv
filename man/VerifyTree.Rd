@@ -4,22 +4,60 @@
 \alias{VerifyTree}
 \title{Verify tree structure}
 \usage{
-VerifyTree(tree, data, alpha = 0.95, nboot = 500)
+VerifyTree(data, alpha = 0.95, nboot = 500, distance.method = "maximum",
+  hclust.method = "complete")
 }
 \arguments{
-\item{tree}{the main tree}
-
-\item{data}{the data used to construct the tree}
+\item{data}{data used for the clustering}
 
 \item{alpha}{the confidence level for the tests}
 
 \item{nboot}{the number of bootstrap samples to use}
+
+\item{distance.method}{method for the distance matrix}
+
+\item{hclust.method}{method for the clustering}
 }
 \value{
 The tree, modified, according to the results of the tests.
 }
 \description{
 Verify tree structure
+}
+\details{
+The hypothesis testing is made with the matrix of Spearman's rho
+for a given dataset, see \insertCite{gaisser2010testing}{ercv}.
+}
+\examples{
+require(HAC)
+str <- hac(type = 1, tree = list(list(list("X4", "X5", 6),
+                                      "X6", 3), "X1", list("X2", "X3", 10), 1))
+
+set.seed(2018)
+U.. <- rHAC(1000, str)
+U.. <- U..[,c(4, 5, 6, 1, 2, 3)]
+
+## Tree via hclust
+spear <- cor(U.., method = "sp")
+clust <- hclust(dist(spear, method = "maximum"),
+                method = "complete")
+tree1 <- hclust2tree(clust)
+
+## Tree after verification
+tree2 <- VerifyTree(U.., alpha = 0.95,
+                    distance.method = "maximum",
+                    hclust.method = "complete")$Tree
+
+## Comparison
+par(mfrow = c(1, 3))
+tree2plot(tree1)
+tree2plot(tree2)
+plot(str)
+par(mfrow = c(1, 3))
+
+}
+\references{
+\insertRef{gaisser2010testing}{erhcv}
 }
 \author{
 Simon-Pierre Gadoury

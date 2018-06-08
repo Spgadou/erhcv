@@ -7,12 +7,12 @@
 EliminateCluster(cluster, pos)
 }
 \arguments{
-\item{cluster}{the cluster under consideration}
+\item{cluster}{the cluster under consideration (of the form provided by the function hclust2tree)}
 
 \item{pos}{the position of the subcluster, directly under the main cluster, to eliminate}
 }
 \value{
-The main cluster, without the subcluster under consideration.
+The main cluster, without the subcluster that was eliminated.
 }
 \description{
 Eliminate a subcluster from a cluster

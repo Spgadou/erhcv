@@ -1,11 +1,11 @@
 #' Eliminate a subcluster from a cluster
 #'
-#' @param cluster the cluster under consideration
+#' @param cluster the cluster under consideration (of the form provided by the function hclust2tree)
 #' @param pos the position of the subcluster, directly under the main cluster, to eliminate
 #'
 #' @include ClusterNodeSelection.R
 #' @author Simon-Pierre Gadoury
-#' @return The main cluster, without the subcluster under consideration.
+#' @return The main cluster, without the subcluster that was eliminated.
 #' @export
 
 EliminateCluster <- function(cluster, pos){

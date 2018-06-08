@@ -7,7 +7,7 @@
 GetLeaves(cluster)
 }
 \arguments{
-\item{cluster}{a cluster}
+\item{cluster}{a cluster (of the form provided by the function hclust2tree)}
 }
 \value{
 Vector of leaves under the cluster.

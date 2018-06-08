@@ -1,6 +1,6 @@
 #' Get a vector of leaves under a given cluster
 #'
-#' @param cluster a cluster
+#' @param cluster a cluster (of the form provided by the function hclust2tree)
 #'
 #' @include VerifyTree.R
 #' @author Simon-Pierre Gadoury

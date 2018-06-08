@@ -7,13 +7,13 @@
 GetPairs(cluster, pos)
 }
 \arguments{
-\item{cluster}{main cluster.}
+\item{cluster}{main cluster (of the form provided by the function hclust2tree)}
 
 \item{pos}{position of the subcluster directly under the main cluster.
-This cluster is the one every other cluster will be paired with.}
+This subcluster is the one every other subcluster will be paired with.}
 }
 \value{
-Matrice of pairs of leaves.
+Matrix of pairs of leaves.
 }
 \description{
 Get pairs of leaves from different branches of a cluster

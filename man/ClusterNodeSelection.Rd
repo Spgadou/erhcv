@@ -2,28 +2,35 @@
 % Please edit documentation in R/ClusterNodeSelection.R
 \name{ClusterNodeSelection}
 \alias{ClusterNodeSelection}
-\title{Test the validity of a subcluster directly under a given cluster}
+\title{Test the significance of a subcluster directly under a given cluster}
 \usage{
 ClusterNodeSelection(cluster, testPos, alpha, data, BootData)
 }
 \arguments{
-\item{cluster}{the main cluster}
+\item{cluster}{the main cluster (of the form provided by the function hclust2tree)}
 
-\item{testPos}{the position of the subcluster to test, directly under the mian cluster}
+\item{testPos}{the position of the subcluster to test, directly under the main cluster}
 
 \item{alpha}{the confidence level for the tests}
 
 \item{data}{the underlying data}
 
-\item{BootData}{the datafram of bootstrap samples of spearman rho, with columsn
-named "(i,j)", where "i" and "j" are different leave}
+\item{BootData}{the dataframe of bootstrap samples of Spearman rho, with columns
+named "(i,j)", where "i" and "j" are different leaves}
 }
 \value{
-The main cluster, with or without the node un der test, wether the
+The main cluster, with or without the node under test, wether the
 hypothesis can be rejected or not.
 }
 \description{
-Test the validity of a subcluster directly under a given cluster
+Test the significance of a subcluster directly under a given cluster
+}
+\details{
+The hypothesis testing is made with the matrix of Spearman's rho
+for a given dataset, see \insertCite{gaisser2010testing}{ercv}.
+}
+\references{
+\insertRef{gaisser2010testing}{erhcv}
 }
 \author{
 Simon-Pierre Gadoury

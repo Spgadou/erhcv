@@ -1,17 +1,26 @@
-#' Test the validity of a subcluster directly under a given cluster
+#' Test the significance of a subcluster directly under a given cluster
 #'
-#' @param cluster the main cluster
-#' @param testPos the position of the subcluster to test, directly under the mian cluster
+#' @details The hypothesis testing is made with the matrix of Spearman's rho
+#' for a given dataset, see \insertCite{gaisser2010testing}{ercv}.
+#'
+#' @param cluster the main cluster (of the form provided by the function hclust2tree)
+#' @param testPos the position of the subcluster to test, directly under the main cluster
 #' @param alpha the confidence level for the tests
 #' @param data the underlying data
-#' @param BootData the datafram of bootstrap samples of spearman rho, with columsn
-#' named "(i,j)", where "i" and "j" are different leave
+#' @param BootData the dataframe of bootstrap samples of Spearman rho, with columns
+#' named "(i,j)", where "i" and "j" are different leaves
 #'
 #' @include VerifyTree.R
 #' @import utils
+#' @import stringr
+#' @import stringi
+#' @importFrom Rdpack reprompt
 #' @author Simon-Pierre Gadoury
-#' @return The main cluster, with or without the node un der test, wether the
+#' @return The main cluster, with or without the node under test, wether the
 #' hypothesis can be rejected or not.
+#'
+#' @references
+#' \insertRef{gaisser2010testing}{erhcv}
 #' @export
 
 ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){

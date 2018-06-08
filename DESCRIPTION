@@ -1,24 +1,33 @@
-Package: ercv
+Package: erhcv
 Type: Package
-Title: Equi-rank Clutering Verification 
-Version: 0.1.0
+Title: Equi-Rank Hierarchical Clustering Validation
+Version: 0.1.1
 License: GPL (>= 2)
-Author: Simon-Pierre Gadoury
+Author: Simon-Pierre Gadoury <spgadou@me.com>
 Maintainer: Simon-Pierre Gadoury <spgadou@me.com>
-Description: Assesses the validity of clusters for a given dataset through bootstrapping and hypothesis testing.
+Description: Assesses the statistical significance of clusters for a given dataset through bootstrapping and hypothesis testing of a given matrix of empirical Spearman's rho, based on the technique of S. Gaiser et al. (2010) <doi:10.1016/j.jmva.2010.07.008>.  
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Depends:
+    R (>= 3.5.0)
+Suggests:
+    HAC,
+    knitr,
+    rmarkdown
 Imports:
     igraph,
     stringr,
     stringi,
-    utils
-Collate: 
+    utils,
+    Rdpack
+RdMacros:
+    Rdpack
+Collate:
     'VerifyTree.R'
     'ClusterNodeSelection.R'
     'EliminateCluster.R'
     'GetLeaves.R'
     'GetPairs.R'
     'hclust2tree.R'
-    'tree2graphdf.R'
+    'tree2plot.R'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/hclust2tree.R
 \name{hclust2tree}
 \alias{hclust2tree}
-\title{Transform a hclust object into a cluster list}
+\title{Transform a hclust object into a tree (list)}
 \usage{
 hclust2tree(clustering)
 }
@@ -10,7 +10,7 @@ hclust2tree(clustering)
 \item{clustering}{hclust object}
 }
 \description{
-Transform a hclust object into a cluster list
+Transform a hclust object into a tree (list)
 }
 \author{
 Simon-Pierre Gadoury
