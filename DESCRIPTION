@@ -31,3 +31,4 @@ Collate:
     'GetPairs.R'
     'hclust2tree.R'
     'tree2plot.R'
+VignetteBuilder: knitr

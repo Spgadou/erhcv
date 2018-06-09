@@ -1,0 +1,71 @@
+---
+title: "Equi-Rank Hierarchical Clustering Validation"
+author: "Simon-Pierre Gadoury"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(erhcv)
+```
+
+`erhcv` is an `R` package providing functions to assess the statistical significance of nodes in the hierarchical clustering of a dataset. 
+
+## Example using nested Archimedean copulas
+
+```{r}
+library(HAC)
+
+## Construct the structure
+str <- hac(type = 1, tree = list(list(list("X4", "X5", 6),
+                                      "X6", 3), "X1", list("X2", "X3", 10), 1))
+set.seed(2018)
+U.. <- rHAC(1000, str)
+U.. <- U..[,c(4, 5, 6, 1, 2, 3)]
+
+## Hierachical clustering
+spear <- cor(U.., method = "spearman")
+dd <- dist(spear, method = "maximum")
+fit <- hclust(dd, method = "complete")
+plot(fit)
+```
+
+`hclust2tree` is a tool to extract the tree structure (in the form of nested lists) of a `hclust` object, and `tree2plot` plots the resulting tree structure.
+
+```{r}
+tree1 <- hclust2tree(fit)
+tree2plot(tree1,
+          asp = 0.9,
+          vertex.size=40,
+          vertex.size2=4,
+          vertex.label.cex=0.8,
+          margin=-0.01)
+```
+
+We see that the clustering does not lead us to the true structure. To assess the validity of every node, we use the function `VerifyTree`. We only need to provide the data, since the function does the initial hierarchical clustering by itself (we can specify the distance and clustering methods with the arguments `distance.method` and `hclust.method`, repsectively). 
+
+```{r,fig.show='hold'}
+tree2 <- VerifyTree(U.., alpha = 0.95, nboot = 500)$Tree
+tree2plot(tree1,
+          asp = 0.9,
+          vertex.size=40,
+          vertex.size2=4,
+          vertex.label.cex=0.8,
+          margin=-0.01)
+tree2plot(tree2,
+          asp = 0.9,
+          vertex.size=40,
+          vertex.size2=4,
+          vertex.label.cex=0.8,
+          margin=-0.01)
+```
+
+We see that the validated tree (to the right) is better. In fact, for this specidfic example, it gives us the true underlying dependence structure between the variables. 
