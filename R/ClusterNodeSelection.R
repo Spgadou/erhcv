@@ -73,7 +73,6 @@ ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
     CritVal_dist <- apply(MAT, 1, function(x) sum(x^2) / m)
     K <- quantile(CritVal_dist, alpha)
     Q <- sum((spear_calc - mean(spear_calc))^2) * (n / m)
-    print(c("Q" = Q, "K" = K))
 
     if (Q < K){
       EliminateCluster(cluster, testPos)

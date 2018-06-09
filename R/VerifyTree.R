@@ -53,7 +53,6 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
                        hclust.method = "complete"){
 
   spear <- cor(data, method = "sp")
-  #spear <- cor.fk(data)
   dd <- dist(spear, method = distance.method)
   tree_fit <- hclust(dd, method = hclust.method)
   tree <- hclust2tree(tree_fit)
@@ -67,7 +66,6 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
   for (i in 1:m){
     pos <- sample(1:nn, replace = T)
     SpearmanBoot[,,i] <-  cor(data[pos,], method = "sp")
-    #SpearmanBoot[,,i] <- cor.fk(data[pos,])
   }
 
   ## Arrangement of the data
@@ -108,18 +106,16 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
           TreeElimination <- function(tree){
 
             for (i in 1:length(tree)){
-              initialCondition <- 0
-              for (element in tree[[i]]){
-                if (length(element) > 1){
-                  initialCondition <- 1
-                  break
-                }
-              }
+              initialCondition <- 1
+              # for (element in tree[[i]]){
+              #   if (length(element) > 1){
+              #     initialCondition <- 1
+              #     break
+              #   }
               if (initialCondition == 1){
                 NewTree <- ClusterNodeSelection(tree, i, alpha, data, SpearmanBootResized)
                 e1$FinalTree <- NewTree
                 if (length(NewTree) != length(tree)){
-                  tree2plot(NewTree)
                   TreeElimination(NewTree)
                   break
                 }
@@ -153,8 +149,12 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
           ini <- paste(res1, collapse = "")
           ini <- paste("e2$TREE", ini, sep = "")
           eval(parse(text = paste(ini, " <- IterativeTreeVerification(tree)", sep = "")))
-          eval(parse(text = paste("for (i in 1:length(", ini, ")){TreeSelection(", ini, "[[",i,"]], path = c(path, ",
-                                  i,"), k = 2)}", sep = "")))
+          for (i in 1:length(eval(parse(text = ini)))){
+            eval(parse(text = paste("TreeSelection(", ini, "[[",i,"]], path = c(path, ",
+                                  i,"), k = 2)", sep = "")))
+          }
+          # eval(parse(text = paste("for (i in 1:length(", ini, ")){TreeSelection(", ini, "[[",i,"]], path = c(path, ",
+          #                         i,"), k = 2)}", sep = "")))
         }
       }
     }
