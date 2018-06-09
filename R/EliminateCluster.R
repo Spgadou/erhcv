@@ -24,8 +24,8 @@ EliminateCluster <- function(cluster, pos){
       FinalCluster[[i]] <- cluster[[pos]][[i - pos + 1]]
     }
     if (pos < length(cluster)){
-      for (i in (pos + 1):length(cluster)){
-        FinalCluster[[length(cluster[[pos]]) + i - pos]] <- cluster[[i]]
+      for (i in (pos + length(cluster[[pos]])):(length(cluster[[pos]]) + length(cluster) - 1)){
+        FinalCluster[[i]] <- cluster[[i - length(cluster[[pos]]) + 1]]
       }
     }
   }

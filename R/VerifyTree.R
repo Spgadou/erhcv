@@ -53,6 +53,7 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
                        hclust.method = "complete"){
 
   spear <- cor(data, method = "sp")
+  #spear <- cor.fk(data)
   dd <- dist(spear, method = distance.method)
   tree_fit <- hclust(dd, method = hclust.method)
   tree <- hclust2tree(tree_fit)
@@ -66,6 +67,7 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
   for (i in 1:m){
     pos <- sample(1:nn, replace = T)
     SpearmanBoot[,,i] <-  cor(data[pos,], method = "sp")
+    #SpearmanBoot[,,i] <- cor.fk(data[pos,])
   }
 
   ## Arrangement of the data
@@ -117,6 +119,7 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
                 NewTree <- ClusterNodeSelection(tree, i, alpha, data, SpearmanBootResized)
                 e1$FinalTree <- NewTree
                 if (length(NewTree) != length(tree)){
+                  tree2plot(NewTree)
                   TreeElimination(NewTree)
                   break
                 }

@@ -38,6 +38,7 @@ ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
 
     MAT <- GetPairs(cluster, testPos)
     spear <- cor(data, method = "sp")
+    #spear <- cor(data, mathod = "kendall")
 
     n <- dim(data)[1]
     nn <- dim(BootData)[1]
@@ -72,6 +73,7 @@ ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
     CritVal_dist <- apply(MAT, 1, function(x) sum(x^2) / m)
     K <- quantile(CritVal_dist, alpha)
     Q <- sum((spear_calc - mean(spear_calc))^2) * (n / m)
+    print(c("Q" = Q, "K" = K))
 
     if (Q < K){
       EliminateCluster(cluster, testPos)
