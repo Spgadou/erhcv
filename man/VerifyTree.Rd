@@ -19,7 +19,7 @@ VerifyTree(data, alpha = 0.95, nboot = 500, distance.method = "maximum",
 \item{hclust.method}{method for the clustering}
 }
 \value{
-The tree, modified, according to the results of the tests.
+A list, containing the bootrap samples and the initial tree structure, modified, according to the results of the tests
 }
 \description{
 Given a matrix of data, where the rows are observations

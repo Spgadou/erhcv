@@ -16,7 +16,7 @@
 #'
 #' @importFrom "stats" cor quantile hclust dist
 #' @author Simon-Pierre Gadoury
-#' @return The tree, modified, according to the results of the tests.
+#' @return A list, containing the bootrap samples and the initial tree structure, modified, according to the results of the tests
 #' @examples
 #' require(HAC)
 #' str <- hac(type = 1, tree = list(list(list("X4", "X5", 6),
