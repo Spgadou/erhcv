@@ -21,11 +21,12 @@
 #' @import stringr
 #' @import stringi
 #' @importFrom Rdpack reprompt
+#' @importFrom stats ecdf
 #'
 #' @author Simon-Pierre Gadoury
 #'
-#' @return The main cluster, with or without the node under test, wether the
-#' hypothesis can be rejected or not.
+#' @return A list containing the main cluster, with or without the node under test, wether the
+#' hypothesis can be rejected or not, as well as the p-value of the test (if the cluster respect the initial conditions)
 #'
 #' @references
 #' \insertRef{gaisser2010testing}{erhcv}
@@ -73,15 +74,18 @@ ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
     CritVal_dist <- apply(MAT, 1, function(x) sum(x^2) / m)
     K <- quantile(CritVal_dist, alpha)
     Q <- sum((spear_calc - mean(spear_calc))^2) * (n / m)
+    pval <- ecdf(CritVal_dist)(Q)
 
     if (Q < K){
-      EliminateCluster(cluster, testPos)
+      list("cluster" = EliminateCluster(cluster, testPos),
+           "pvalue" = pval)
     }
     else{
-      cluster
+      list("cluster" = cluster,
+           "pvalue" = pval)
     }
   }
   else{
-    cluster
+    list("cluster" = cluster)
   }
 }

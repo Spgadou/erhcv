@@ -19,8 +19,8 @@ ClusterNodeSelection(cluster, testPos, alpha, data, BootData)
 named "(i,j)", where "i" and "j" are different leaves}
 }
 \value{
-The main cluster, with or without the node under test, wether the
-hypothesis can be rejected or not.
+A list containing the main cluster, with or without the node under test, wether the
+hypothesis can be rejected or not, as well as the p-value of the test (if the cluster respect the initial conditions)
 }
 \description{
 Test the significance of a subcluster directly under a given cluster.

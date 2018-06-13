@@ -16,7 +16,9 @@
 #'
 #' @importFrom "stats" cor quantile hclust dist
 #' @author Simon-Pierre Gadoury
-#' @return A list, containing the bootrap samples and the initial tree structure, modified, according to the results of the tests
+#' @return A list, containing the bootrap samples, the initial tree structure, modified, according to the results of the tests and a list of igraph.data.frame
+#' objects. Note that the third element of the list is to keep track of the algorithm steps (the p-values are also provided).
+#'
 #' @examples
 #' require(HAC)
 #' str <- hac(type = 1, tree = list(list(list("X4", "X5", 6),
@@ -87,9 +89,10 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
   Verif <- function(tree){
     e2 <- new.env()
     e2$k <- 1
+    e2$evol <- list()
     TreeSelection <- function(tree, path = numeric(0), k = 1){
 
-      IterativeTreeVerification <- function(tree){
+      IterativeTreeVerification <- function(tree, path){
 
         initialCondition <- 0
         for (element in tree){
@@ -113,10 +116,15 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
               #     break
               #   }
               if (initialCondition == 1){
-                NewTree <- ClusterNodeSelection(tree, i, alpha, data, SpearmanBootResized)
-                e1$FinalTree <- NewTree
-                if (length(NewTree) != length(tree)){
-                  TreeElimination(NewTree)
+                NewTree_fit <- ClusterNodeSelection(tree, i, alpha, data, SpearmanBootResized)
+                if (length(NewTree_fit) == 2){
+                  e2$evol[[e2$k]] <- tree2plot(NewTree_fit$cluster, plot = F)
+                  names(e2$evol)[e2$k] <- NewTree_fit$pvalue
+                  e2$k <- e2$k + 1
+                }
+                e1$FinalTree <- NewTree_fit$cluster
+                if (length(e1$FinalTree) != length(tree)){
+                  TreeElimination(e1$FinalTree)
                   break
                 }
               }
@@ -135,7 +143,7 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
 
       if (length(tree) != 1){
         if (k == 1){
-          e2$TREE <- IterativeTreeVerification(tree)
+          e2$TREE <- IterativeTreeVerification(tree, 0)
 
           for (i in 1:length(e2$TREE)){
             TreeSelection(e2$TREE[[i]], path = c(path, i), k = 2)
@@ -148,7 +156,7 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
           }
           ini <- paste(res1, collapse = "")
           ini <- paste("e2$TREE", ini, sep = "")
-          eval(parse(text = paste(ini, " <- IterativeTreeVerification(tree)", sep = "")))
+          eval(parse(text = paste(ini, " <- IterativeTreeVerification(tree, path)", sep = "")))
           for (i in 1:length(eval(parse(text = ini)))){
             eval(parse(text = paste("TreeSelection(", ini, "[[",i,"]], path = c(path, ",
                                   i,"), k = 2)", sep = "")))
@@ -160,7 +168,8 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
     }
     TreeSelection(tree)
     list("Bootstrap samples" = SpearmanBootResized,
-         "Tree" = e2$TREE)
+         "Tree" = e2$TREE,
+         "pvalues" = e2$evol)
   }
   Verif(tree)
 }
