@@ -31,14 +31,21 @@
 #' \insertRef{gaisser2010testing}{erhcv}
 #' @export
 
-ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
+ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData, validation.method){
 
   if (length(cluster[[testPos]]) != 1){
     BootData_UnderTest <- NULL
+    spear_calc <- 0
+    spear <- cor(data, method = "sp")
+
+    if (validation.method == "average"){
+      clustering <- hclust(dist(spear, method = "maximum"),
+                           method = "complete")
+
+      spear <- ModifySpearman(hclust2tree(clustering), spear)
+    }
 
     MAT <- GetPairs(cluster, testPos)
-    spear <- cor(data, method = "sp")
-    #spear <- cor(data, mathod = "kendall")
 
     n <- dim(data)[1]
     nn <- dim(BootData)[1]
@@ -48,6 +55,7 @@ ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
     for (i in 1:dim(MAT)[1]){
       spear_calc <- c(spear_calc, spear[MAT[i,1], MAT[i,2]])
     }
+
     spear_calc <- spear_calc[-1] # Get sampled Rho (no boot)
     ini <- "BootData_UnderTest <- cbind(z)"
     input <- "BootData$`(z1,z2)`"
@@ -73,10 +81,6 @@ ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData){
     CritVal_dist <- apply(MAT, 1, function(x) sum(x^2) / m)
     K <- quantile(CritVal_dist, alpha, type = 1)
     Q <- sum((spear_calc - mean(spear_calc))^2) * (n / m)
-
-    print("Début")
-    print(Q)
-    print(K)
 
     if (Q < K){
       EliminateCluster(cluster, testPos)

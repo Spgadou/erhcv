@@ -50,7 +50,8 @@
 
 VerifyTree <- function(data, alpha = 0.95, nboot = 500,
                        distance.method = "maximum",
-                       hclust.method = "complete"){
+                       hclust.method = "complete",
+                       validation.method = "average"){
 
   spear <- cor(data, method = "sp")
   dd <- dist(spear, method = distance.method)
@@ -65,7 +66,10 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
   SpearmanBoot <- array(0, dim = c(mm, mm, m))
   for (i in 1:m){
     pos <- sample(1:nn, replace = T)
-    SpearmanBoot[,,i] <-  cor(data[pos,], method = "sp")
+    if (validation.method == "average")
+      SpearmanBoot[,,i] <-  ModifySpearman(tree, cor(data[pos,], method = "sp"))
+    else
+      SpearmanBoot[,,i] <-  cor(data[pos,], method = "sp")
   }
 
   ## Arrangement of the data
@@ -113,7 +117,8 @@ VerifyTree <- function(data, alpha = 0.95, nboot = 500,
               #     break
               #   }
               if (initialCondition == 1){
-                NewTree <- ClusterNodeSelection(tree, i, alpha, data, SpearmanBootResized)
+                NewTree <- ClusterNodeSelection(tree, i, alpha, data, SpearmanBootResized,
+                                                validation.method = validation.method)
                 e1$FinalTree <- NewTree
                 if (length(NewTree) != length(tree)){
                   TreeElimination(NewTree)
