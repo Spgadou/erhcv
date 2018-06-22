@@ -39,10 +39,10 @@ ClusterNodeSelection <- function(cluster, testPos, alpha, data, BootData, valida
     spear <- cor(data, method = "sp")
 
     if (validation.method == "average"){
-      clustering <- hclust(dist(spear, method = "maximum"),
-                           method = "complete")
-
-      spear <- ModifySpearman(hclust2tree(clustering), spear)
+      spear_within <- ModifySpearman(cluster, spear)
+      spear[GetLeaves(cluster),
+            GetLeaves(cluster)] <- spear_within[GetLeaves(cluster),
+                                                GetLeaves(cluster)]
     }
 
     MAT <- GetPairs(cluster, testPos)

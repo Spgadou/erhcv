@@ -29,5 +29,6 @@ Collate:
     'EliminateCluster.R'
     'GetLeaves.R'
     'GetPairs.R'
+    'ModifySpearman.R'
     'hclust2tree.R'
     'tree2plot.R'

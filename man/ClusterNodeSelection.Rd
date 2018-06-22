@@ -4,7 +4,7 @@
 \alias{ClusterNodeSelection}
 \title{Subcluster significance test}
 \usage{
-ClusterNodeSelection(cluster, testPos, alpha, data, BootData)
+ClusterNodeSelection(cluster, testPos, alpha, data, BootData, validation.method)
 }
 \arguments{
 \item{cluster}{the main cluster (of the form provided by the function hclust2tree)}

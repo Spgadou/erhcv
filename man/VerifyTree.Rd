@@ -5,7 +5,7 @@
 \title{Verify tree structure}
 \usage{
 VerifyTree(data, alpha = 0.95, nboot = 500, distance.method = "maximum",
-  hclust.method = "complete")
+  hclust.method = "complete", validation.method = "average")
 }
 \arguments{
 \item{data}{data used for the clustering}
