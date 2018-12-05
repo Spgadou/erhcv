@@ -30,7 +30,7 @@ data needs to be provided, as well as the structure under consideration.
 }
 \details{
 The hypothesis testing is made with the matrix of Spearman's rho
-for a given dataset, see \insertCite{gaisser2010testing}{ercv}.
+for a given dataset, see \insertCite{gaisser2010testing}{erhcv}.
 }
 \references{
 \insertRef{gaisser2010testing}{erhcv}
