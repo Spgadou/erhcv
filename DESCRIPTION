@@ -14,13 +14,15 @@ Depends:
 Suggests:
     HAC,
     knitr,
-    rmarkdown
+    rmarkdown,
+    nCopula
 Imports:
     igraph,
     stringr,
     stringi,
     utils,
-    Rdpack
+    Rdpack,
+    data.tree
 RdMacros:
     Rdpack
 Collate:
