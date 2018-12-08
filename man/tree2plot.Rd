@@ -4,16 +4,18 @@
 \alias{tree2plot}
 \title{Plot of a tree structure}
 \usage{
-tree2plot(tree)
+tree2plot(tree, structure = FALSE)
 }
 \arguments{
-\item{tree}{the tree under consideration of the form provided by the function hclust2tree)}
+\item{tree}{the tree under consideration (of the form provided by the function hclust2tree)}
+
+\item{structure}{logical. Should the data.tree structure be returned?}
 }
 \value{
-a plot or graph.data.frame object
+a plot and/or data.tree object
 }
 \description{
-Provide a plot or a graph.data.frame object for a given tree structure.
+Provide the plot and/or the data.tree object for a given tree structure.
 }
 \author{
 Simon-Pierre Gadoury

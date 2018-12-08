@@ -1,18 +1,18 @@
 #' Plot of a tree structure
 #'
-#' @description Provide a plot or a graph.data.frame object for a given tree structure.
+#' @description Provide the plot and/or the data.tree object for a given tree structure.
 #'
-#' @param tree the tree under consideration of the form provided by the function hclust2tree)
-#'
+#' @param tree the tree under consideration (of the form provided by the function hclust2tree)
+#' @param structure logical. Should the data.tree structure be returned?
 #' @author Simon-Pierre Gadoury
 #'
-#' @return a plot or graph.data.frame object
+#' @return a plot and/or data.tree object
 #'
 #' @import data.tree
 #'
 #' @export
 
-tree2plot <- function(tree){
+tree2plot <- function(tree, structure = FALSE){
   e1 <- new.env()
   e1$O <- data.tree::Node$new("(O)")
 
@@ -42,6 +42,10 @@ tree2plot <- function(tree){
     }
   }
   Update_tree(tree)
-  list("tree" = e1$O,
-       " " = plot(e1$O))
+  if (structure){
+    list("tree" = e1$O,
+         " " = plot(e1$O))
+  }
+  else
+    plot(e1$O)
 }
