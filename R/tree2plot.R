@@ -9,6 +9,7 @@
 #' @return a plot and/or data.tree object
 #'
 #' @import data.tree
+#' @importFrom graphics plot
 #'
 #' @export
 

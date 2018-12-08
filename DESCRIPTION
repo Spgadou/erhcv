@@ -17,7 +17,6 @@ Suggests:
     rmarkdown,
     nCopula
 Imports:
-    igraph,
     stringr,
     stringi,
     utils,
