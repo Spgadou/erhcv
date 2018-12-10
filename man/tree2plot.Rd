@@ -9,13 +9,13 @@ tree2plot(tree, structure = FALSE)
 \arguments{
 \item{tree}{the tree under consideration (of the form provided by the function hclust2tree)}
 
-\item{structure}{logical. Should the data.tree structure be returned?}
+\item{structure}{logical. Should the data.tree structure be returned rather than the plot?}
 }
 \value{
-a plot and/or data.tree object
+a plot or data.tree object
 }
 \description{
-Provide the plot and/or the data.tree object for a given tree structure.
+Provide the plot or the data.tree object for a given tree structure.
 }
 \author{
 Simon-Pierre Gadoury
