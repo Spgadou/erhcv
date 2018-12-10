@@ -27,9 +27,9 @@ RdMacros:
 Collate:
     'VerifyTree.R'
     'ClusterNodeSelection.R'
+    'CompareTrees.R'
     'EliminateCluster.R'
     'GetLeaves.R'
     'GetPairs.R'
-    'compareTrees.R'
     'hclust2tree.R'
     'tree2plot.R'
