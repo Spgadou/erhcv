@@ -4,7 +4,7 @@
 #'
 #' @param tree_test (testing tree) a tree structure in the form of nested lists (as the output of hclust2tree, for example)
 #' @param tree_ref (reference tree) a tree structure in the form of nested lists (as the output of hclust2tree, for example)
-
+#'
 #' @author Simon-Pierre Gadoury
 #'
 #' @details This test is particularly useful when two trees are not ordered in the same way.
