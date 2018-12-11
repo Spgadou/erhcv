@@ -8,7 +8,7 @@ Maintainer: Simon-Pierre Gadoury <spgadou@me.com>
 Description: Assesses the statistical significance of clusters for a given dataset through bootstrapping and hypothesis testing of a given matrix of empirical Spearman's rho, based on the technique of S. Gaiser et al. (2010) <doi:10.1016/j.jmva.2010.07.008>.  
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Depends:
     R (>= 3.5.0)
 Suggests:

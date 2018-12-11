@@ -4,8 +4,8 @@
 \alias{VerifyTree}
 \title{Verify tree structure}
 \usage{
-VerifyTree(data, alpha = 0.95, nboot = 500, distance.method = "maximum",
-  hclust.method = "complete")
+VerifyTree(data, alpha = 0.95, nboot = 500,
+  distance.method = "maximum", hclust.method = "complete")
 }
 \arguments{
 \item{data}{data used for the clustering}
