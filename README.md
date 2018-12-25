@@ -34,6 +34,7 @@ Note that one can transform this tree into a data.tree object using tree2plot.
 ```{r}
 tree2plot(treeStructure, plot = FALSE) # data.tree
 ```
+As a general guideline, a tree structure needs to be a list. Then, one distinguishes nodes from leafs by object types. Indeed, nodes are lists, and leafs are integers. The construction is analogous to the structure construction of the package [nCopula](https://cran.r-project.org/web/packages/nCopula/index.html).
 
 ### Main functions
 
