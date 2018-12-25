@@ -1,10 +1,51 @@
 # erhcv: Equi-Rank Hierarchical Clustering Validation
 
+## Package
+
+### Short description
+
 Assesses the statistical significance of clusters for a given dataset through bootstrapping and hypothesis testing of a given matrix of empirical Spearman's rho, based on the technique of S. Gaiser et al. (2010). 
+
+### Tree structure convention
+
+In this package, a *tree structure* consists of nested lists, which is very natural. To explain the concept, let us use the following custom data.tree object:
+```{r}
+1  (O)            
+2   ¦--(O,1)      
+3   ¦   ¦--(O,1,1)
+4   ¦   ¦   ¦--7  
+5   ¦   ¦   °--8  
+6   ¦   ¦--6      
+7   ¦   ¦--5      
+8   ¦   °--(O,1,4)
+9   ¦       ¦--9  
+10  ¦       °--10 
+11  ¦--2          
+12  ¦--1          
+13  °--(O,4)      
+14      ¦--3      
+15      °--4    
+```
+The associated *tree structure* is then constructed as follows.
+```{r}
+treeStructure <- list(list(list(7, 8), 6, 5, list(9, 10)), 2, 1, list(3, 4))
+```
+Note that one can transform this tree into a data.tree object using tree2plot.
+```{r}
+tree2plot(treeStructure, plot = FALSE) # data.tree
+```
+
+### Main functions
+
+Function | Description
+----------| -------------
+VerifyTree | Main function of the package, used to *clean* raw hclust clustering
+hclust2tree | Transforms a hclust object into a tree structure (under the convention of this package)
+tree2plot | Illustration of a tree (or data.tree structure)
 
 ## Working example
 
-### Pre-requisite
+### Packages
 
 For a proper demonstration of the package, we use the package *nCopula* to sample hierarchical data.
 
