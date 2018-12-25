@@ -72,6 +72,7 @@ cleanedTree <- erhcv::VerifyTree(U.., alpha = alpha,
 
 ## Visualize output
 erhcv::tree2plot(cleanedTree, structure = TRUE)
+
 1  (O)            
 2   ¦--(O,1)      
 3   ¦   ¦--(O,1,1)
