@@ -34,7 +34,7 @@ clustering <- hclust(distance, method = "average")
 
 ## Transform clustering into nested lists
 tree <- erhcv::hclust2tree(clustering)
-tree2plot(tree, structure = TRUE) # data.tree object
+erhcv::tree2plot(tree, structure = TRUE) # data.tree object
 
 1  (O)                              
 2   ¦--(O,1)                        
@@ -66,11 +66,11 @@ Here, we make use of *VerifyTree* to chop down nodes of the clustering we obtain
 ```{r}
 ## Clean the tree
 alpha <- 1 # Severe simplification parameter
-cleanedTree <- VerifyTree(U.., alpha = alpha,
-                          distance.method = "maximum", hclust.method = "average")$Tree
+cleanedTree <- erhcv::VerifyTree(U.., alpha = alpha,
+                                 distance.method = "maximum", hclust.method = "average")$Tree
 
 ## Visualize output
-tree2plot(cleanedTree, structure = TRUE)
+erhcv::tree2plot(cleanedTree, structure = TRUE)
 
 1  (O)            
 2   ¦--1          
@@ -88,5 +88,3 @@ tree2plot(cleanedTree, structure = TRUE)
 14          ¦--9  
 15          °--10 
 ```
-
-
