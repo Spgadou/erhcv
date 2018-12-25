@@ -1,37 +1,39 @@
-## Published R packages
+# erhcv: Equi-Rank Hierarchical Clustering Validation
 
-You can use the [editor on GitHub](https://github.com/Spgadou/Spgadou.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+Assesses the statistical significance of clusters for a given dataset through bootstrapping and hypothesis testing of a given matrix of empirical Spearman's rho, based on the technique of S. Gaiser et al. (2010). 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Working example
 
-### Markdown
+### Pre-requisite
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+For a proper demonstration of the package, we use the package *nCopula* to sample hierarchical data.
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```{r}
+install.packages(erhcv); install.packages(nCopula)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Dataset sampling
 
-### Jekyll Themes
+```{r}
+library(nCopula)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Spgadou/Spgadou.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Build structure
+structure <- GEO(0.5, 1:2, list(GAMMA(1/2, 3:4, NULL),
+                                GEO(0.3, 5:6, list(GAMMA(1/3, 7:8, NULL),
+                                                   GAMMA(1/3, 9:10, NULL))))
+                                                   
+## Sample from the structure
+U.. <- rCompCop(1000, structure)
 
-### Support or Contact
+## Compute Spearman correlation matrix
+Spearman <- cor(U.., method = "sp")
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Cluster Spearman matrix
+distance <- dist(Spearman, method = "maximum")
+clustering <- hclust(distance, method = "average")
+
+## Transform clustering into nested lists
+tree <- erhcv::hclust2tree(clustering)
+tree2plot(tree, structure = TRUE)
+```
+
