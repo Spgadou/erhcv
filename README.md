@@ -12,7 +12,7 @@ For a proper demonstration of the package, we use the package *nCopula* to sampl
 install.packages(erhcv); install.packages(nCopula)
 ```
 
-### Dataset sampling
+### Dataset sampling and clustering
 
 ```{r}
 library(nCopula)
@@ -58,6 +58,10 @@ tree2plot(tree, structure = TRUE) # data.tree object
 ```
 
 We rapidly see that the obtained structure is far from the original one. We then use tools from *erhcv* to eliminate unnecessary nodes, based on our (subjective) simplification level *alpha*.
+
+## Clustering validation
+
+Here, we make use of *VerifyTree* to chop down nodes of the clustering we obtained earlier. 
 
 ```{r}
 ## Clean the tree
