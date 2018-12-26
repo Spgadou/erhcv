@@ -1,6 +1,9 @@
 ---
 title: "erhcv"
-output: html_document
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
 ---
 
 [Homepage](https://spgadou.github.io)
