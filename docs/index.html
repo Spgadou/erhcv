@@ -91,9 +91,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In this package, a <em>tree structure</em> consists of nested lists, which is very natural. To explain the concept, let us use the following custom data.tree object. The associated <em>tree structure</em> is then constructed as follows.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">treeStructure &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">list</span>(<span class="kw">list</span>(<span class="dv">7</span>, <span class="dv">8</span>), <span class="dv">6</span>, <span class="dv">5</span>, <span class="kw">list</span>(<span class="dv">9</span>, <span class="dv">10</span>)), <span class="dv">2</span>, <span class="dv">1</span>, <span class="kw">list</span>(<span class="dv">3</span>, <span class="dv">4</span>))</code></pre></div>
 <p>Note that one can transform this tree into a data.tree object using tree2plot.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(erhcv); <span class="kw">library</span>(nCopula)</code></pre></div>
-<pre><code>## Loading required package: copula</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tree2plot</span>(treeStructure, <span class="dt">structure =</span> <span class="ot">TRUE</span>) <span class="co"># data.tree</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressMessages</span>(
+  {
+    <span class="kw">library</span>(erhcv); <span class="kw">library</span>(nCopula)
+  }
+)
+
+<span class="kw">tree2plot</span>(treeStructure, <span class="dt">structure =</span> <span class="ot">TRUE</span>) <span class="co"># data.tree</span></code></pre></div>
 <pre><code>##          levelName
 ## 1  (O)            
 ## 2   ¦--(O,1)      
@@ -114,10 +118,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="main-functions" class="section level3">
 <h3>Main functions</h3>
-<table style="width:35%;">
+<table>
 <colgroup>
-<col width="15%"></col>
-<col width="19%"></col>
+<col width="13%"></col>
+<col width="86%"></col>
 </colgroup>
 <thead>
 <tr class="header">
@@ -150,9 +154,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="dataset-sampling-and-clustering" class="section level3">
 <h3>Dataset sampling and clustering</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nCopula); <span class="kw">library</span>(erhcv)
-
-## Build structure
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Build structure
 structure &lt;-<span class="st"> </span><span class="kw">GEO</span>(<span class="fl">0.5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="kw">list</span>(<span class="kw">GAMMA</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, <span class="ot">NULL</span>),
                                 <span class="kw">GEO</span>(<span class="fl">0.3</span>, <span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, <span class="kw">list</span>(<span class="kw">GAMMA</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">8</span>, <span class="ot">NULL</span>),
                                                    <span class="kw">GAMMA</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">9</span><span class="op">:</span><span class="dv">10</span>, <span class="ot">NULL</span>)))))
