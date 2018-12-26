@@ -111,8 +111,10 @@ Here, we make use of *VerifyTree* to chop down nodes of the clustering we obtain
 ```r
 ## Clean the tree
 alpha <- 1 # Severe simplification parameter
-cleanedTree <- erhcv::VerifyTree(U.., alpha = alpha,
-                                 distance.method = "maximum", hclust.method = "average")$Tree
+cleanedTree <- erhcv::VerifyTree(U..,
+                                 alpha = alpha,
+                                 distance.method = "maximum",
+                                 hclust.method = "average")$Tree
 
 ## Visualize output
 erhcv::tree2plot(cleanedTree, structure = TRUE)
