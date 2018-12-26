@@ -2,7 +2,7 @@
 
 ### CRAN
 
-https://cran.r-project.org/web/packages/erhcv/index.html
+[https://cran.r-project.org/web/packages/erhcv/index.html](https://cran.r-project.org/web/packages/erhcv/index.html)
 
 ### Short description
 
