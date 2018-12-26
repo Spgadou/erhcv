@@ -138,4 +138,4 @@ erhcv::tree2plot(cleanedTree, structure = TRUE)
 
 Bellow is the associated tree structure.
 
-![Verified tree structure](https://github.com/Spgadou/erhcv/blob/gh-pages/TrueTree.png)
+![Verified tree structure](/TrueTree.png)
