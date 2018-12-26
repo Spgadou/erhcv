@@ -135,3 +135,7 @@ erhcv::tree2plot(cleanedTree, structure = TRUE)
 14      ¦--3      
 15      °--4 
 ```
+
+Bellow is the associated tree structure.
+
+![Verified tree structure](https://github.com/Spgadou/erhcv/blob/gh-pages/TrueTree.png)
