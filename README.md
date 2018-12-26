@@ -1,6 +1,4 @@
-# erhcv: Equi-Rank Hierarchical Clustering Validation
-
-## Package
+## Introduction
 
 ### Short description
 
