@@ -1,5 +1,9 @@
 ## Introduction
 
+### CRAN
+
+https://cran.r-project.org/web/packages/erhcv/index.html
+
 ### Short description
 
 Assesses the statistical significance of clusters for a given dataset through bootstrapping and hypothesis testing of a given matrix of empirical Spearman's rho, based on the technique of S. Gaiser et al. (2010). 
