@@ -11,7 +11,7 @@ Assesses the statistical significance of clusters for a given dataset through bo
 ### Tree structure convention
 
 In this package, a *tree structure* consists of nested lists, which is very natural. To explain the concept, let us use the following custom data.tree object:
-```{r}
+```r
 1  (O)            
 2   ¦--(O,1)      
 3   ¦   ¦--(O,1,1)
@@ -29,11 +29,11 @@ In this package, a *tree structure* consists of nested lists, which is very natu
 15      °--4    
 ```
 The associated *tree structure* is then constructed as follows.
-```{r}
+```r
 treeStructure <- list(list(list(7, 8), 6, 5, list(9, 10)), 2, 1, list(3, 4))
 ```
 Note that one can transform this tree into a data.tree object using tree2plot.
-```{r}
+```r
 tree2plot(treeStructure, plot = FALSE) # data.tree
 ```
 As a general guideline, a tree structure needs to be a list. Then, one distinguishes nodes from leafs by object types. Indeed, nodes are lists, and leafs are integers. The construction is analogous to the structure construction of the package [nCopula](https://cran.r-project.org/web/packages/nCopula/index.html).
@@ -52,13 +52,13 @@ tree2plot | Illustration of a tree (or data.tree structure)
 
 For a proper demonstration of the package, we use the package *nCopula* to sample hierarchical data.
 
-```{r}
+```r
 install.packages(erhcv); install.packages(nCopula)
 ```
 
 ### Dataset sampling and clustering
 
-```{r}
+```r
 library(nCopula)
 
 ## Build structure
@@ -108,7 +108,7 @@ We rapidly see that the obtained structure is far from the original one. We then
 
 Here, we make use of *VerifyTree* to chop down nodes of the clustering we obtained earlier. 
 
-```{r}
+```r
 ## Clean the tree
 alpha <- 1 # Severe simplification parameter
 cleanedTree <- erhcv::VerifyTree(U.., alpha = alpha,
