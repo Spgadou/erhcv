@@ -1,6 +1,8 @@
-# erhcv: Equi-Rank Hierarchical Clustering Validation
+## Introduction
 
-## Package
+### CRAN
+
+https://cran.r-project.org/web/packages/erhcv/index.html
 
 ### Short description
 
