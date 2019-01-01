@@ -3,7 +3,6 @@ title: "erhcv"
 subtitle: 'Equi-Rank Hierarchical Clustering Validation'
 author:
 - name: Simon-Pierre Gadoury
-  affiliation: ETH Zürich
 output:
   prettydoc::html_pretty:
     theme: cayman
